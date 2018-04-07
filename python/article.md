@@ -3,13 +3,14 @@ Later, when asked to provide documentation for a different project, I took to sw
 A lot of the information that needed to be described in the specification was already implicitly coded into the application, so instead of writing down the definitions I decided to generate the specification using the available application semantics.
 
 This was a python project using the flask-restful REST implementation with the SQLAlchemy ORM, so the idea was to extract database object schemas from the SQLAlchemy class declarations and the flask-restful endpoint definitions to generate the swagger specification.
-This worked out very well and I’ve since improved the implementation and functionality and made the project available as an open source python-pip package: safrs.
+This worked out very well and I’ve since improved the implementation and functionality and made the project available as an open source python-pip package: [safrs](https://github.com/thomaxxl/safrs).
 
- 
+
 Additional swagger information can be provided in the python source code comments using the yaml syntax. An example of this approach is shown in the following source code snippet:
 
-This simple class definition will automatically generate a swagger specification and jsonapi routes:
 
+This simple class definition will automatically generate a swagger specification and jsonapi routes:
+![users](images/users.PNG)
 
 The software can also detect and expose database relationships, the “books” relationship defined in the User class from the example gives us the following endpoints
 
