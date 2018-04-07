@@ -1,4 +1,4 @@
-# Auto-generating Swagger Specifications with Python
+# Automatically Generating Swagger Specifications with Python
 
 A couple of years ago I had to implement a system monitoring app using the nutanix web api. This was the first time I was introduced to the swagger UI and I found it a really convenient way to debug and document web services.
 Later, when asked to provide documentation for a different project, I took to swagger and started implementing a specification. Like most of today's webservices, the API endpoints for this project provided CRUD functionality: create, read, update, delete operations to a database backend.
@@ -7,9 +7,8 @@ A lot of the information that needed to be described in the specification was al
 This was a python project using the flask-restful REST implementation with the SQLAlchemy ORM, so the idea was to extract database object schemas from the SQLAlchemy class declarations and the flask-restful endpoint definitions to generate the swagger specification.
 This worked out very well and I’ve since improved the implementation and functionality and made the project available as an open source python-pip package: [safrs](https://github.com/thomaxxl/safrs).
 
-I have created a small [example script](https://github.com/thomaxxl/safrs/blob/master/examples/demo_relationship.py) To demonstrate the package's functionality. 
-Running this small script will expose the two classes (Users and Books) as REST endpoints, a running.
-
+I have created a small [example script](https://github.com/thomaxxl/safrs/blob/master/examples/demo_relationship.py) To demonstrate the package's functionality (A running version of the example can be found [here](http://thomaxxl.pythonanywhere.com/api/))
+Running this script will expose the two classes (Users and Books) as REST endpoints. The User class definition looks like this:
 
 ```python
 class User(SAFRSBase, db.Model):
@@ -23,7 +22,7 @@ class User(SAFRSBase, db.Model):
     books = db.relationship('Book', back_populates="user", lazy='dynamic')
 ```
 
-This simple class definition will automatically produce a swagger specification and [jsonapi](http://jsonapi.org/) routes:
+This class will automatically produce a swagger specification and [jsonapi](http://jsonapi.org/)-compliant endpoints:
 ![users](images/users1.PNG)
 
 The software can also detect and expose database relationships, the “books” relationship defined in the User class from the example creates following endpoints
@@ -38,5 +37,7 @@ It's also possible for developers to describe additional swagger specification d
 yaml-encoded comments (eg. the "description" key in the User class will be parsed and used as the description in the UI).
 
 
-
-
+Using this approach may not server everybody's needs but I think there are a number of advantages:
+- The swagger specification is always consistent with the implementation
+- There's less manual work involved in creating the specification
+- The API is compliant with the [jsonapi](http://jsonapi.org/) standard.
