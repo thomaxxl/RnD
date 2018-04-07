@@ -6,9 +6,19 @@ This was a python project using the flask-restful REST implementation with the S
 This worked out very well and I’ve since improved the implementation and functionality and made the project available as an open source python-pip package: [safrs](https://github.com/thomaxxl/safrs).
 
 
-Additional swagger information can be provided in the python source code comments using the yaml syntax. An example of this approach is shown in the following source code snippet:
+Additional swagger information can be provided in the python source code comments using the yaml syntax. An example of this approach is shown in the following source code extract (from [this example]():
 
-
+```python
+class User(SAFRSBase, db.Model):
+    '''
+        description: User description
+    '''
+    __tablename__ = 'Users'
+    id = Column(String, primary_key=True)
+    name = Column(String, default='')
+    email = Column(String, default='')
+    books = db.relationship('Book', back_populates="user", lazy='dynamic')
+```
 This simple class definition will automatically generate a swagger specification and jsonapi routes:
 ![users](images/users1.PNG)
 
