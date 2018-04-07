@@ -1,3 +1,5 @@
+# Automatically Generating a Swagger Specification with Python
+
 A couple of years ago I had to implement a system monitoring app using the nutanix web api. This was the first time I was introduced to the swagger UI and I found it a really convenient way to debug and document web services.
 Later, when asked to provide documentation for a different project, I took to swagger and started implementing a specification. Like most of today's webservices, the API endpoints for this project provided CRUD functionality: create, read, update, delete operations to a database backend.
 A lot of the information that needed to be described in the specification was already implicitly coded into the application, so instead of writing down the definitions I decided to generate the specification using the available application semantics.
