@@ -3,4 +3,4 @@
 * Create content library
 * Create a Windows VM 
 * Clone the VM to template in library
-* Fill in parameters 
+* Fill in parameters in the deploy.py script
